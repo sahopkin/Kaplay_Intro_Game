@@ -1,6 +1,6 @@
 # Kaplay Intro Game
 
-This repository contains the sprites and scripts to build a basic introductory game using Kaplay.Js v3000
+This repository contains the sprites and scripts to build a basic introductory game using Kaplay.Js v3001.0.9
 
 The game is built using Google Apps Script and deployed as a WebApp.  In order to do so, 4 files are created:  
 - Code.gs
