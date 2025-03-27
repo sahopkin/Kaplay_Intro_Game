@@ -10,4 +10,4 @@ The game is built using Google Apps Script and deployed as a WebApp.  In order t
 
 The Kaplay code is all written within the js.html file.  Sprites for the game are stored externally in a PostImages.org folder.
 
-Link to playable version of the game:  [Kaplay Intro Game - Final Game v2](https://script.google.com/macros/s/AKfycbxBlk5RA1PBlnMCb9Ixa6B3xXdFcPvhzcodinwZS1_IapJ_jhW9VTALcm9BahLwSPWbWQ/exec)
+Link to playable version of the game:  [Kaplay Intro Game - Final Game v2](https://script.google.com/macros/s/AKfycbzYikQKRpZLoIebRWWPsEsivckOHEDV6xdQhwszRgrU6KmqNqUyclpY3nYsdDgd2a1C/exec)
