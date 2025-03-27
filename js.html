@@ -1,0 +1,110 @@
+<script type="module">
+ import kaplay from "https://unpkg.com/kaplay@3001.0.9/dist/kaplay.mjs"
+
+  kaplay({
+      width: 869,
+      height: 669,
+      scale: 1,
+      font: "sans-serif",
+      background: [52, 232, 235]
+    })
+
+  loadSprite("buddy", "https://i.postimg.cc/mkGpJQzt/player.png")
+  loadSprite("enemy", "https://i.postimg.cc/nrfchN0g/enemy.png")
+  loadSprite("ground", "https://i.postimg.cc/FF0HBsK4/ground-2.png")
+
+  scene("game", () => {
+    const MOVE_SPEED = 200
+    const JUMP_FORCE = 300
+    const map = [
+          "                              ",
+          "        @                     ",
+          "                              ",
+          "                              ",
+          "                              ",
+          "                              ",
+          "                              ",
+          "                              ",
+          "                              ",
+          "                     @        ",
+          "      @    xxx                ",
+          "                              ",
+          "xxxxxxxxxxx   xxxxxxxxxxxxxxxx"
+        ]
+
+    const config = {
+          tileWidth: 32,
+          tileHeight: 32,
+          tiles: {
+            "x": () => [sprite("ground"), area(), body({ isStatic: true })],
+            "@": () => [sprite("enemy"), area(), "dangerous"]
+          }
+        }
+
+    addLevel(map, config)
+
+    setGravity(500)
+
+    const player = add([
+          sprite("buddy"),
+          pos(32, 10),
+          area(),
+          body(),
+          offscreen({ destroy: true }),
+          "bud"
+    ])
+
+
+    onKeyDown("right", () => {
+      player.move(MOVE_SPEED, 0)
+    })
+
+    onKeyDown("left", () => {
+      player.move(-MOVE_SPEED, 0)
+    })
+
+    onKeyPress("space", () => {
+      if (player.isGrounded()) {
+        player.jump(JUMP_FORCE)
+      }  
+    })
+
+
+    player.onCollide('dangerous', () => {
+        destroy(player)
+        go("lose")
+      })
+
+    player.onUpdate(() => {
+      if(player.pos.y > height()) {
+        destroy(player)
+        go("lose")
+      }
+    })
+
+  });
+
+
+  scene("lose", () => {
+    add([
+      text("Game Over"),
+      anchor("center"),
+      scale(3),
+      pos(width() / 2, height() / 2)
+    ])
+
+    add([
+        text('Press the "z" key to restart the game'),
+        anchor("center"),
+        pos(width() / 2, height() / 2 + 200)
+      ])
+
+      onKeyPress("z", () => {
+        go("game")
+      })
+
+  })
+
+
+  go("game")
+</script>
